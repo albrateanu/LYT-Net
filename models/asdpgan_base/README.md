@@ -1,13 +1,13 @@
 # Adaptive Subpixel GAN
 
-### Relevant results
-[relevant_results_image](aspgan_base_predictions.png)
+## Relevant results
+![relevant_results_image](aspgan_base_predictions.png)
 
-### Architecture
-##### Generator
-[generator_architecture](generator_v2.png)
+## Architecture
+### Generator
+![generator_architecture](generator_v2.png)
 - Parameters: 7.3M
 
-##### Discriminator
-[discriminator_architecture](discriminator_v2.png)
+### Discriminator
+![discriminator_architecture](discriminator_v2.png)
 - Parameters: 600K
