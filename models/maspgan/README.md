@@ -6,7 +6,7 @@
 ## Architecture
 ### Generator
 ![generator_architecture](generator.png)
-- Parameters: 7.3M
+- Parameters: 90k
 
 ### Discriminator
 ![discriminator_architecture](discriminator.png)
