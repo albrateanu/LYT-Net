@@ -1,4 +1,4 @@
-# Adaptive Subpixel GAN
+# Multi-Scale Adaptive Subpixel GAN
 
 ## Relevant results
 <!-- ![relevant_results_image](aspgan_base_predictions.png) -->
