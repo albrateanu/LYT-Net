@@ -4,8 +4,8 @@ import subprocess
 def run_train(dataset):
     subprocess.run(['python', './scripts/train.py', '--dataset', dataset])
 
-def run_test():
-    subprocess.run(['python', './scripts/test.py'])
+def run_test(dataset):
+    subprocess.run(['python', './scripts/test.py', '--dataset', dataset])
 
 def run_complexity_check():
     subprocess.run(['python', './scripts/complexity_check.py'])
