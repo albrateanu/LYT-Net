@@ -16,7 +16,7 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--train', action='store_true', help='Run training script')
     group.add_argument('--test', action='store_true', help='Run testing script')
-    group.add_argument('--complexity_check', action='store_true', help='Run complexity check script')
+    group.add_argument('--complexity', action='store_true', help='Run complexity check script')
     
     parser.add_argument('--dataset', type=str, help='Dataset name for training')
 
@@ -32,7 +32,7 @@ def main():
             run_test(args.dataset)
         else:
             print("Please specify a dataset for testing using '--dataset [LOLv1/LOLv2_Real/LOLv2_Synthetic]'")
-    elif args.complexity_check:
+    elif args.complexity:
         run_complexity_check()
 
 if __name__ == '__main__':
