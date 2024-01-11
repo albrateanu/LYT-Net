@@ -10,7 +10,9 @@ import tensorflow as tf
 from model.arch import LYT, Denoiser
 import argparse
 import datetime
+import matplotlib.pyplot as plt
 from tqdm import tqdm
+import numpy as np
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.random.set_seed(
@@ -65,6 +67,10 @@ def start_test(dataset):
     # Loading weights
     model.load_weights(f'./pretrained_weights/{model_name}')
 
+    # Results directory
+    os.makedirs(f'./results/{dataset}', exist_ok=True)
+    file_names = os.listdir(raw_test_path[:len(raw_test_path)-5])
+    file_names.sort()
 
     total_psnr = 0
     total_ssim = 0
@@ -78,7 +84,14 @@ def start_test(dataset):
         
             total_psnr += tf.image.psnr(corrected_image, generated_image, max_val=1.0)
             total_ssim += tf.image.ssim(corrected_image, generated_image, max_val=1.0)
-        
+
+            # save to results folder
+            save_path = f'./results/{dataset}/{file_names[num_samples]}'
+            generated_image_np = generated_image.numpy()
+            # generated_image = 255.0 * generated_image
+            # generated_image = tf.cast
+            plt.imsave(save_path, generated_image_np[0], format='png')
+
             num_samples += 1
         
     avg_psnr = total_psnr / num_samples
