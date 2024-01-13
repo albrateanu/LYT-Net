@@ -4,8 +4,8 @@ import subprocess
 def run_train(dataset):
     subprocess.run(['python', './scripts/train.py', '--dataset', dataset])
 
-def run_test(dataset):
-    subprocess.run(['python', './scripts/test.py', '--dataset', dataset])
+def run_test(dataset, weights):
+    subprocess.run(['python', './scripts/test.py', '--dataset', dataset, '--weights', weights])
 
 def run_complexity_check():
     subprocess.run(['python', './scripts/complexity_check.py'])
@@ -18,7 +18,8 @@ def main():
     group.add_argument('--test', action='store_true', help='Run testing script')
     group.add_argument('--complexity', action='store_true', help='Run complexity check script')
     
-    parser.add_argument('--dataset', type=str, help='Dataset name for training')
+    parser.add_argument('--dataset', type=str, help='Dataset name')
+    parser.add_argument('--weights', type=str, help='Dataset name')
 
     args = parser.parse_args()
 
@@ -28,10 +29,12 @@ def main():
         else:
             print("Please specify a dataset for training using '--dataset [LOLv1/LOLv2_Real/LOLv2_Synthetic]'")
     elif args.test:
-        if args.dataset:
-            run_test(args.dataset)
-        else:
+        if args.dataset and args.weights:
+            run_test(args.dataset, args.weights)
+        if not args.dataset:
             print("Please specify a dataset for testing using '--dataset [LOLv1/LOLv2_Real/LOLv2_Synthetic]'")
+        if not args.weights:
+            print("Please specify a path to a '.h5' file containing model weights.")
     elif args.complexity:
         run_complexity_check()
 

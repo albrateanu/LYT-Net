@@ -22,29 +22,26 @@ def get_time():
     current_time = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     return current_time
 
-def start_test(dataset):
+def start_test(dataset, weights):
     print('LYT-Net 2024 (c) Brateanu, A., Balmez, R., Avram A., Orhei, C.C.')
     print(f"({get_time()}) Testing on dataset: {dataset}")
 
     raw_test_path = ''
     corrected_test_path = ''
-    model_name = ''
+    weights_path = weights
 
     # Load dataset
     if dataset == 'LOLv1':
         raw_test_path = './data/LOLv1/Test/input/*.png'
         corrected_test_path = './data/LOLv1/Test/target/*.png'
-        model_name = 'LOL_v1_weights.h5'
 
     elif dataset == 'LOLv2_Real':
         raw_test_path = './data/LOLv2/Real_captured/Test/Low/*.png'
         corrected_test_path = './data/LOLv2/Real_captured/Test/Normal/*.png'
-        model_name = 'LOL_v2_real_weights.h5'
 
     elif dataset == 'LOLv2_Synthetic':
         raw_test_path = './data/LOLv2/Synthetic/Test/Low/*.png'
         corrected_test_path = './data/LOLv2/Synthetic/Test/Normal/*.png'
-        model_name = 'LOL_v2_synthetic_weights.h5'
 
     else:
         print('Incorrect usage. \'--dataset\' argument must be one of [LOLv1/LOLv2_Real/LOLv2_Synthetic].')
@@ -64,7 +61,7 @@ def start_test(dataset):
     model.build(input_shape=(None,None,None,3))
 
     # Loading weights
-    model.load_weights(f'./pretrained_weights/{model_name}')
+    model.load_weights(f'{weights_path}')
 
     # Results directory
     os.makedirs(f'./results/{dataset}', exist_ok=True)
@@ -104,6 +101,7 @@ def start_test(dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Testing script')
     parser.add_argument('--dataset', type=str, required=True, help='Dataset name for testing')
+    parser.add_argument('--weights', type=str, required=True, help='Path to \'.h5\' file containing model weights.')
     args = parser.parse_args()
 
-    start_test(args.dataset)
+    start_test(args.dataset, args.weights)
