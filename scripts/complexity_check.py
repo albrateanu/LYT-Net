@@ -46,8 +46,8 @@ def compute_flops(model, input_shape=(256,256,3)):
     
             return flops.total_float_ops
     
-    gen_flops = get_flops(model_)
-    return gen_flops
+    total_flops = get_flops(model_)
+    return total_flops
 
 def compute_complexity(shape=(256,256,3)):
     print('LYT-Net 2024 (c) Brateanu, A., Balmez, R., Avram A., Orhei, C.C.')
@@ -62,11 +62,11 @@ def compute_complexity(shape=(256,256,3)):
     model.build(input_shape=(None,None,None,3))
 
     # Get stats
-    gen_flops = compute_flops(model, shape)
+    flops = compute_flops(model, shape)
     param_count, _ = get_total_params(model)
     
     print(f"({get_time()}) LYT-Net complexity:")
-    print(f'FLOPs: {(gen_flops / (1024*1024*1024)):.2f} G')
+    print(f'FLOPs: {(flops / (1024*1024*1024)):.2f} G')
     print(f'Params: {param_count}')
     
 if __name__ == '__main__':
