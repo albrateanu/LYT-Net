@@ -24,8 +24,8 @@ def get_total_params(model):
     total_non_trainable_params = sum([tf.keras.backend.count_params(w) for w in model.non_trainable_weights])
     return total_params, total_non_trainable_params
 
-def compute_flops(model):
-    input_layer = tf.keras.Input(shape=(256, 256, 3))
+def compute_flops(model, input_shape=(256,256,3)):
+    input_layer = tf.keras.Input(shape=input_shape)
     
     generated_images = model(input_layer)
     
@@ -49,7 +49,7 @@ def compute_flops(model):
     gen_flops = get_flops(model_)
     return gen_flops
 
-def compute_complexity():
+def compute_complexity(shape=(256,256,3)):
     print('LYT-Net 2024 (c) Brateanu, A., Balmez, R., Avram A., Orhei, C.C.')
     print(f"({get_time()}) Computing complexity of LYT-Net.")
 
@@ -62,7 +62,7 @@ def compute_complexity():
     model.build(input_shape=(None,None,None,3))
 
     # Get stats
-    gen_flops = compute_flops(model)
+    gen_flops = compute_flops(model, shape)
     param_count, _ = get_total_params(model)
     
     print(f"({get_time()}) LYT-Net complexity:")
@@ -71,5 +71,12 @@ def compute_complexity():
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Complexity check script')
+    parser.add_argument('--shape', type=str, required=False, help='Input shape')
     args = parser.parse_args()
-    compute_complexity()
+    if args.shape:
+        shape = args.shape[1:len(args.shape)-1]
+        shape = shape.split(',')
+        shape = [int(x) for x in shape]
+        compute_complexity(shape)  
+    else:
+        compute_complexity()

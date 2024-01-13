@@ -7,8 +7,8 @@ def run_train(dataset):
 def run_test(dataset, weights):
     subprocess.run(['python', './scripts/test.py', '--dataset', dataset, '--weights', weights])
 
-def run_complexity_check():
-    subprocess.run(['python', './scripts/complexity_check.py'])
+def run_complexity_check(shape='(256,256,3)'):
+    subprocess.run(['python', './scripts/complexity_check.py', '--shape', shape])
 
 def main():
     parser = argparse.ArgumentParser(description='Run project scripts')
@@ -20,6 +20,7 @@ def main():
     
     parser.add_argument('--dataset', type=str, help='Dataset name')
     parser.add_argument('--weights', type=str, help='Dataset name')
+    parser.add_argument('--shape', type=str, help='Input shape')
 
     args = parser.parse_args()
 
@@ -36,7 +37,16 @@ def main():
         if not args.weights:
             print("Please specify a path to a '.h5' file containing model weights.")
     elif args.complexity:
-        run_complexity_check()
+        if args.shape:
+            shape = args.shape[1:len(args.shape)-1]
+            shape = shape.split(',')
+            shape = [int(x) for x in shape]
+            if len(shape) != 3:
+                print("Please provide an input shape as a tuple of the form '(H,W,C)'")
+                return
+            run_complexity_check(args.shape)
+        else:
+            run_complexity_check()
 
 if __name__ == '__main__':
     main()
