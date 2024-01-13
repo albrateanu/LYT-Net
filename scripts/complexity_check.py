@@ -66,7 +66,7 @@ def compute_complexity():
     param_count, _ = get_total_params(model)
     
     print(f"({get_time()}) LYT-Net complexity:")
-    print(f'FLOPs: {gen_flops / 1e9:.02f} G')
+    print(f'FLOPs: {(gen_flops / (1024*1024*1024)):.2f} G')
     print(f'Params: {param_count}')
     
 if __name__ == '__main__':
