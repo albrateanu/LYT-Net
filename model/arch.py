@@ -114,7 +114,7 @@ class LYT(Model):
         self.lum_up = layers.UpSampling2D(8)
         self.lum_conv = layers.Conv2D(filters, (1,1), padding='same')
         self.ref_conv = layers.Conv2D(filters, (1,1), padding='same')
-        self.mff = MSEFBlock(filters)
+        self.msef = MSEFBlock(filters)
         
         self.recombine = layers.Conv2D(filters, (3, 3), activation='relu', padding='same')
         
@@ -143,7 +143,7 @@ class LYT(Model):
         ref = self.ref_conv(ref)
         shortcut = ref
         ref = ref + 0.2 * self.lum_conv(lum)
-        ref = self.mff(ref)
+        ref = self.msef(ref)
         ref = ref + shortcut
         
         recombined = self.recombine(tf.concat([ref, lum], axis=-1))
