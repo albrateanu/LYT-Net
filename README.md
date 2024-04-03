@@ -15,6 +15,7 @@ Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 
 ## Updates
 <!-- - `12.01.2024`: text update -->
+- `03.04.2024` Training code re-added and adjusted.
 - `30.01.2024` arXiv pre-print available.
 - `10.01.2024` Pre-trained model weights and code for training and testing are released.
 
@@ -113,6 +114,20 @@ python main.py --complexity
 
 # To run FLOPS check with custom (1,H,W,C)
 python main.py --complexity --shape '(H,W,C)'
+```
+
+### 5. Train
+You can train the model using the following commands:
+
+```bash
+# Train on LOLv1
+python main.py --train --dataset LOLv1
+
+# Train on LOLv2 Real
+python main.py --train --dataset LOLv2_Real
+
+# Train on LOLv2 Synthetic
+python main.py --train --dataset LOLv2_Synthetic
 ```
 
 ## Citation
