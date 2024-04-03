@@ -98,7 +98,7 @@ def start_test(dataset, weights, gtmean):
             generated_image = (generated_image + 1.0) / 2.0
 
             if gtmean:
-                gamma_values = np.linspace(0.4, 2.5, 1000)
+                gamma_values = np.linspace(0.4, 2.5, 100)
                 optimal_gamma = find_optimal_gamma(generated_image, corrected_image, gamma_values, 1.0)
                 generated_image = adjust_gamma(generated_image, optimal_gamma)
 

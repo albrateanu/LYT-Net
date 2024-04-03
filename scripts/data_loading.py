@@ -61,13 +61,10 @@ def load_and_preprocess_image(raw_img_path, corrected_img_path):
     cropped_images = tf.image.random_crop(stacked_images, size=[2, 256, 256, 3]) 
     raw_img, corrected_img = cropped_images[0], cropped_images[1] 
 
-    raw_img, corrected_img = data_augmentation(raw_img, corrected_img)
-
     raw_img = (raw_img / 255.0) * 2 - 1.0
     corrected_img = (corrected_img / 255.0) * 2 - 1.0
 
     return raw_img, corrected_img
-
 
 def get_datasets(raw_image_path, corrected_image_path):
     tf.random.set_seed(
