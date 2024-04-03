@@ -87,7 +87,7 @@ LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629P
 </details>
 
 ### 3. Test
-You can test the model using the following commands. Pre-trained weights are available under the ```pretrained_weights``` folder. GT Mean evaluation can be done with the ```--gtmean``` argument.
+You can test the model using the following commands. Pre-trained weights are available at [Google Drive](https://drive.google.com/drive/folders/1LgLUXGy-7fQXVnxyEeyBolkZ5ZX1f_em?usp=sharing). GT Mean evaluation can be done with the ```--gtmean``` argument.
 
 ```bash
 # Test on LOLv1
