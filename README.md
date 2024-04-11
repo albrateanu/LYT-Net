@@ -91,19 +91,19 @@ You can test the model using the following commands. Pre-trained weights are ava
 
 ```bash
 # Test on LOLv1
-python main.py --test --dataset LOLv1 --weights pretrained_weights/LOL_v1.h5
+python main.py --test --dataset LOLv1 --weights pretrained_weights/LOLv1.h5
 # Test on LOLv1 using GT Mean
-python main.py --test --dataset LOLv1 --weights pretrained_weights/LOL_v1.h5 --gtmean
+python main.py --test --dataset LOLv1 --weights pretrained_weights/LOLv1.h5 --gtmean
 
 # Test on LOLv2 Real
-python main.py --test --dataset LOLv2_Real --weights pretrained_weights/LOL_v2_real.h5
+python main.py --test --dataset LOLv2_Real --weights pretrained_weights/LOLv2_Real.h5
 # Test on LOLv2 Real using GT Mean
-python main.py --test --dataset LOLv2_Real --weights pretrained_weights/LOL_v2_real.h5 --gtmean
+python main.py --test --dataset LOLv2_Real --weights pretrained_weights/LOLv2_Real.h5 --gtmean
 
 # Test on LOLv2 Synthetic
-python main.py --test --dataset LOLv2_Synthetic --weights pretrained_weights/LOL_v2_synthetic.h5
+python main.py --test --dataset LOLv2_Synthetic --weights pretrained_weights/LOLv2_Synthetic.h5
 # Test on LOLv2 Synthetic using GT Mean
-python main.py --test --dataset LOLv2_Synthetic --weights pretrained_weights/LOL_v2_synthetic.h5 --gtmean
+python main.py --test --dataset LOLv2_Synthetic --weights pretrained_weights/LOLv2_Synthetic.h5 --gtmean
 ```
 
 ### 4. Compute Complexity
