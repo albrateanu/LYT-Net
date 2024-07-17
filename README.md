@@ -2,7 +2,7 @@
 
 <div align="center">
   
-<img src="figs/Logo.png" alt="LYT-Net Logo" width="200" height="200" />
+<img src="figs/Logo.png" alt="LYT-Net Logo" width="800" height="300" />
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2401.15204)
 	
