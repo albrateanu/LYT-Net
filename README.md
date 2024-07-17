@@ -17,7 +17,7 @@ Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 
 ## Updates
 <!-- - `12.01.2024`: text update -->
-- `17.07.2024` Released PyTorch implementation.
+- `17.07.2024` Released rudimentary PyTorch implementation.
 - `03.04.2024` Training code re-added and adjusted.
 - `30.01.2024` arXiv pre-print available.
 - `10.01.2024` Pre-trained model weights and code for training and testing are released.
