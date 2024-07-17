@@ -93,21 +93,10 @@ def validate(model, dataloader, device):
             low, high = low.to(device), high.to(device)
             output = model(low)
 
-            # Denormalize images from [-1, 1] to [0, 1]
-            # output = (output + 1) / 2
-            # high = (high + 1) / 2
-
-            # Check tensor values for debugging
-            # print(f'Output min: {output.min().item()}, max: {output.max().item()}')
-            # print(f'High min: {high.min().item()}, max: {high.max().item()}')
-
             # Calculate PSNR
             psnr = calculate_psnr(output, high)
             total_psnr += psnr
 
-            # Optionally calculate SSIM if needed
-            # ssim_value = calculate_ssim(output, high)
-            # total_ssim += ssim_value
 
     avg_psnr = total_psnr / len(dataloader)
     avg_ssim = total_ssim / len(dataloader)
