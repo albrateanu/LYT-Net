@@ -5,6 +5,7 @@
 <img src="figs/Logo.png" alt="LYT-Net Logo" width="300" height="300" />
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2401.15204)
+</div>
 
 ## Description
 This is the TensorFlow version of LYT-Net.

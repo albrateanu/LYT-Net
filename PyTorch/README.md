@@ -5,6 +5,7 @@
 <img src="figs/Logo.png" alt="LYT-Net Logo" width="300" height="300" />
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2401.15204)
+</div>
 
 ## Description
 This is the PyTorch version of LYT-Net.
@@ -107,8 +108,6 @@ You can train the model using the following commands:
 
 # Train on LOLv2 Synthetic
 ```
-
-**Note:** Please make sure to download VGG19 pre-trained weights for the hybrid loss function from here: [Google Drive](). Then, place it under the current directory (i.e. ```PyTorch```).
 
 ## Citation
 Preprint Citation
