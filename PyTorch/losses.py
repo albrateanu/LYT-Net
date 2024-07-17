@@ -9,9 +9,7 @@ import torchvision.transforms as T
 def load_vgg_from_path(weights_path):
     # Load the VGG19 model with pretrained=False to avoid downloading
     vgg = models.vgg19(pretrained=False)
-    # Load the state dict from the specified path
     vgg.load_state_dict(torch.load(weights_path))
-    # Extract the features up to the required layer
     vgg = vgg.features[:16]
     return vgg
 
