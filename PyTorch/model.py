@@ -161,8 +161,7 @@ class LYT(nn.Module):
         )
 
     def forward(self, inputs):
-        ycbcr = rgb_to_ycbcr(inputs)
-        y, cb, cr = torch.split(ycbcr, 1, dim=1)
+        y, cb, cr = torch.split(inputs, 1, dim=1)
         cb = self.denoiser_cb(cb) + cb
         cr = self.denoiser_cr(cr) + cr
 
