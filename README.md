@@ -23,7 +23,7 @@ Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 - `10.01.2024` Pre-trained model weights and code for training and testing are released.
 
 ## Experiment
-Please check the ```TensorFlow/``` and ```PyTorch``` folders for library-specific implementations.
+Please check the ```TensorFlow``` and ```PyTorch``` folders for library-specific implementations.
 
 ## Results
 
