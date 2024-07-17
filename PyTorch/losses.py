@@ -5,19 +5,10 @@ import torchvision.models as models
 from pytorch_msssim import ms_ssim
 import torchvision.transforms as T
 
-
-def load_vgg_from_path(weights_path):
-    # Load the VGG19 model with pretrained=False to avoid downloading
-    vgg = models.vgg19(pretrained=False)
-    vgg.load_state_dict(torch.load(weights_path))
-    vgg = vgg.features[:16]
-    return vgg
-
 class VGGPerceptualLoss(nn.Module):
-    def __init__(self, device, weights_path='vgg19.pth'):
+    def __init__(self, device):
         super(VGGPerceptualLoss, self).__init__()
-        vgg = models.vgg19(pretrained=True).features[:16]  # Until block3_conv3
-        # vgg = load_vgg_from_path(weights_path).to(device)
+        vgg = models.vgg19(weights=True).features[:16]  # Until block3_conv3
         self.loss_model = vgg.to(device).eval()
         for param in self.loss_model.parameters():
             param.requires_grad = False
@@ -64,9 +55,6 @@ class CombinedLoss(nn.Module):
         self.alpha6 = 0.25
 
     def forward(self, y_true, y_pred):
-        # y_true = (y_true + 1.0) / 2.0
-        # y_pred = (y_pred + 1.0) / 2.0
-
         smooth_l1_l = smooth_l1_loss(y_true, y_pred)
         ms_ssim_l = multiscale_ssim_loss(y_true, y_pred)
         perc_l = self.perceptual_loss_model(y_true, y_pred)
