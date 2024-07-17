@@ -10,6 +10,7 @@
 ## Description
 This is the PyTorch version of LYT-Net.
 
+**Note:** This is not the implementation used for reporting paper results.
 ## Experiment
 
 ### 1. Create Environment
