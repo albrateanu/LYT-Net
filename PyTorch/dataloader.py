@@ -48,6 +48,6 @@ def create_dataloaders(train_low, train_high, test_low, test_high, crop_size=256
     test_dataset = PairedDataset(test_low, test_high, transform=transform, training=False)
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
+    test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4)
 
     return train_loader, test_loader
