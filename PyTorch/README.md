@@ -16,11 +16,16 @@ This is the PyTorch version of LYT-Net.
 ### 1. Create Environment
 - Make Conda Environment
 ```bash
-
+conda create -n LYT_Torch python=3.9 -y
+conda activate LYT_Torch
 ```
 - Install Dependencies
 ```bash
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
+pip install matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm tensorboard
+
+pip install einops gdown addict future lmdb numpy pyyaml requests scipy yapf lpips thop timm
 ```
 
 ### 2. Prepare Datasets
@@ -82,14 +87,7 @@ LOLv2 - [Google Drive](https://drive.google.com/file/d/1OMfP6Ks2QKJcru1wS2eP629P
 You can test the model using the following commands. Pre-trained weights are available at [Google Drive](). GT Mean evaluation can be done with the ```--gtmean``` argument.
 
 ```bash
-# Test on LOLv1
-# Test on LOLv1 using GT Mean
-
-# Test on LOLv2 Real
-# Test on LOLv2 Real using GT Mean
-
-# Test on LOLv2 Synthetic
-# Test on LOLv2 Synthetic using GT Mean
+# N/A
 ```
 
 ### 4. Compute Complexity
@@ -100,15 +98,13 @@ python macs.py
 ```
 
 ### 5. Train
-You can train the model using the following commands:
+You can train the model using the following command:
 
 ```bash
-# Train on LOLv1
-
-# Train on LOLv2 Real
-
-# Train on LOLv2 Synthetic
+python train.py
 ```
+
+**Note:** Please modify the dataset paths in ```train.py``` as per your requirements.
 
 ## Citation
 Preprint Citation
