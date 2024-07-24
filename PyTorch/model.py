@@ -159,9 +159,20 @@ class LYT(nn.Module):
             nn.Conv2d(1, filters, kernel_size=3, padding=1),
             nn.ReLU(inplace=True)
         )
+    
+    def _rgb_to_ycbcr(self, image):
+        r, g, b = image[:, 0, :, :], image[:, 1, :, :], image[:, 2, :, :]
+    
+        y = 0.299 * r + 0.587 * g + 0.114 * b
+        u = -0.14713 * r - 0.28886 * g + 0.436 * b + 0.5
+        v = 0.615 * r - 0.51499 * g - 0.10001 * b + 0.5
+        
+        yuv = torch.stack((y, u, v), dim=1)
+        return yuv
 
     def forward(self, inputs):
-        y, cb, cr = torch.split(inputs, 1, dim=1)
+        ycbcr = self._rgb_to_ycbcr(inputs)
+        y, cb, cr = torch.split(ycbcr, 1, dim=1)
         cb = self.denoiser_cb(cb) + cb
         cr = self.denoiser_cr(cr) + cr
 
@@ -192,12 +203,4 @@ class LYT(nn.Module):
                 init.kaiming_uniform_(module.weight, a=0, mode='fan_in', nonlinearity='relu')
                 if module.bias is not None:
                     init.constant_(module.bias, 0)
-
-def rgb_to_ycbcr(image):
-    matrix = torch.tensor([[0.299, -0.1687, 0.5],
-                           [0.587, -0.3313, -0.4187],
-                           [0.114, 0.5, -0.0813]]).to(image.device)
-    shift = torch.tensor([0, 128, 128]).to(image.device)
-    ycbcr = torch.tensordot(image, matrix, dims=([1], [0])) + shift
-    return ycbcr.permute(0, 3, 1, 2)
-
+                    

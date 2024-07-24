@@ -1,16 +1,11 @@
 import torch
-import torch.optim as optim
 import torch.nn.functional as F
-import torch.nn as nn
-from torch.optim.lr_scheduler import CosineAnnealingLR
-import torchvision.transforms as transforms
-from torchvision.utils import save_image
 from torchmetrics.functional import structural_similarity_index_measure
 from model import LYT
-from losses import CombinedLoss
 from dataloader import create_dataloaders
 import os
 import numpy as np
+from torchvision.utils import save_image
 
 def calculate_psnr(img1, img2, max_pixel_value=1.0, gt_mean=True):
     """
@@ -61,14 +56,18 @@ def calculate_ssim(img1, img2, max_pixel_value=1.0, gt_mean=True):
     ssim_val = structural_similarity_index_measure(img1, img2, data_range=max_pixel_value)
     return ssim_val.item()
 
-def validate(model, dataloader, device):
+def validate(model, dataloader, device, result_dir):
     model.eval()
     total_psnr = 0
     total_ssim = 0
     with torch.no_grad():
-        for low, high in dataloader:
+        for idx, (low, high) in enumerate(dataloader):
             low, high = low.to(device), high.to(device)
             output = model(low)
+            output = torch.clamp(output, 0, 1)
+
+            # Save the output image
+            save_image(output, os.path.join(result_dir, f'result_{idx}.png'))
 
             # Calculate PSNR
             psnr = calculate_psnr(output, high)
@@ -78,64 +77,30 @@ def validate(model, dataloader, device):
             ssim = calculate_ssim(output, high)
             total_ssim += ssim
 
-
     avg_psnr = total_psnr / len(dataloader)
     avg_ssim = total_ssim / len(dataloader)
     return avg_psnr, avg_ssim
 
 def main():
-    # Hyperparameters
-    train_low = 'data/LOLv1/Train/input'
-    train_high = 'data/LOLv1/Train/target'
+    # Paths and device setup
     test_low = 'data/LOLv1/Test/input'
     test_high = 'data/LOLv1/Test/target'
-    learning_rate = 2e-4 
-    num_epochs = 1500
+    weights_path = 'best_model.pth'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f'LR: {learning_rate}; Epochs: {num_epochs}')
 
-    # Data loaders
-    train_loader, test_loader = create_dataloaders(train_low, train_high, test_low, test_high, crop_size=256, batch_size=1)
-    print(f'Train loader: {len(train_loader)}; Test loader: {len(test_loader)}')
+    dataset_name = test_low.split('/')[1]
+    result_dir = os.path.join('results', dataset_name)
+    os.makedirs(result_dir, exist_ok=True)
 
-    # Model, loss, optimizer, and scheduler
+    _, test_loader = create_dataloaders(None, None, test_low, test_high, crop_size=None, batch_size=1)
+    print(f'Test loader: {len(test_loader)}')
+
     model = LYT().to(device)
-    # if torch.cuda.device_count() > 1:
-    #     model = torch.nn.DataParallel(model)
+    model.load_state_dict(torch.load(weights_path, map_location=device))
+    print(f'Model loaded from {weights_path}')
 
-    criterion = CombinedLoss(device)
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    scheduler = CosineAnnealingLR(optimizer, T_max=num_epochs)
-    scaler = torch.cuda.amp.GradScaler()
-
-    best_psnr = 0
-    print('Training started.')
-    for epoch in range(num_epochs):
-        model.train()
-        train_loss = 0.0
-        for batch_idx, batch in enumerate(train_loader):
-            inputs, targets = batch
-            inputs, targets = inputs.to(device), targets.to(device)
-
-            optimizer.zero_grad()
-
-            outputs = model(inputs)
-            loss = criterion(outputs, targets)
-            
-            scaler.scale(loss).backward()
-            scaler.step(optimizer)
-            scaler.update()
-
-            train_loss += loss.item()
-
-        avg_psnr, avg_ssim = validate(model, test_loader, device)
-        print(f'Epoch {epoch + 1}/{num_epochs}, PSNR: {avg_psnr:.6f}, SSIM: {avg_ssim:.6f}')
-        scheduler.step()
-
-        if avg_psnr > best_psnr:
-            best_psnr = avg_psnr
-            torch.save(model.state_dict(), 'best_model.pth')
-            print(f'Saving model with PSNR: {best_psnr:.6f}')
+    avg_psnr, avg_ssim = validate(model, test_loader, device, result_dir)
+    print(f'Validation PSNR: {avg_psnr:.6f}, SSIM: {avg_ssim:.6f}')
 
 if __name__ == '__main__':
     main()
