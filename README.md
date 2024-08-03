@@ -31,7 +31,7 @@ Please check the ```TensorFlow``` and ```PyTorch``` folders for library-specific
 |:--------:|:----------:|:---------:|:-------:|:---------:|
 |          | PSNR       | SSIM      | PSNR    | SSIM      |
 |  LOLv1   |  27.23     |  0.853    | 26.63   |  0.836    |
-| LOLv2-R  |  27.8      |  0.873    | 28.41   |  0.878    |
+| LOLv2-R  |  27.80     |  0.873    | 28.41   |  0.878    |
 | LOLv2-S  |  29.39     |  0.939    | 26.72   |  0.928    |
 
 
