@@ -32,16 +32,20 @@ def smooth_l1_loss(y_true, y_pred):
 def multiscale_ssim_loss(y_true, y_pred, max_val=1.0, power_factors=[0.5, 0.5]):
     return 1.0 - ms_ssim(y_true, y_pred, data_range=max_val, size_average=True)
 
-def histogram_loss(y_true, y_pred, bins=256):
-    y_true_hist = torch.histc(y_true, bins=bins, min=0.0, max=1.0)
-    y_pred_hist = torch.histc(y_pred, bins=bins, min=0.0, max=1.0)
+def gaussian_kernel(x, mu, sigma):
+    return torch.exp(-0.5 * ((x - mu) / sigma) ** 2)
 
-    y_true_hist = y_true_hist / y_true_hist.sum()
-    y_pred_hist = y_pred_hist / y_pred_hist.sum()
+def histogram_loss(y_true, y_pred, bins=256, sigma=0.01):
+    
+    bin_edges = torch.linspace(0.0, 1.0, bins, device=y_true.device)
+
+    y_true_hist = torch.sum(gaussian_kernel(y_true.unsqueeze(-1), bin_edges, sigma), dim=0)
+    y_pred_hist = torch.sum(gaussian_kernel(y_pred.unsqueeze(-1), bin_edges, sigma), dim=0)
+    
+    y_true_hist /= y_true_hist.sum()
+    y_pred_hist /= y_pred_hist.sum()
 
     hist_distance = torch.mean(torch.abs(y_true_hist - y_pred_hist))
-
-    return hist_distance
 
 class CombinedLoss(nn.Module):
     def __init__(self, device):
