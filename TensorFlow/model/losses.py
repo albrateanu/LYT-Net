@@ -27,12 +27,17 @@ def smooth_l1_loss(y_true, y_pred):
 def multiscale_ssim_loss(y_true, y_pred, max_val=1.0, power_factors=[0.5, 0.5]):
     return 1 - tf.reduce_mean(tf.image.ssim_multiscale(y_true, y_pred, max_val, power_factors=power_factors))
 
-def histogram_loss(y_true, y_pred, bins=256):
-    y_true_hist = tf.histogram_fixed_width(y_true, [0.0, 1.0], nbins=bins, dtype=tf.int32)
-    y_pred_hist = tf.histogram_fixed_width(y_pred, [0.0, 1.0], nbins=bins, dtype=tf.int32)
+def histogram_loss(y_true, y_pred, bins=256, sigma=0.01):
+    bin_edges = tf.linspace(0.0, 1.0, bins)
+    
+    def gaussian_kernel(x, mu, sigma):
+        return tf.exp(-0.5 * ((x - mu) / sigma) ** 2)
 
-    y_true_hist = tf.cast(y_true_hist, tf.float32) / tf.cast(tf.reduce_sum(y_true_hist), tf.float32)
-    y_pred_hist = tf.cast(y_pred_hist, tf.float32) / tf.cast(tf.reduce_sum(y_pred_hist), tf.float32)
+    y_true_hist = tf.reduce_sum(gaussian_kernel(y_true[..., tf.newaxis], bin_edges, sigma), axis=0)
+    y_pred_hist = tf.reduce_sum(gaussian_kernel(y_pred[..., tf.newaxis], bin_edges, sigma), axis=0)
+    
+    y_true_hist /= tf.reduce_sum(y_true_hist)
+    y_pred_hist /= tf.reduce_sum(y_pred_hist)
 
     hist_distance = tf.reduce_mean(tf.abs(y_true_hist - y_pred_hist))
 
