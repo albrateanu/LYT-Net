@@ -46,6 +46,7 @@ def histogram_loss(y_true, y_pred, bins=256, sigma=0.01):
     y_pred_hist /= y_pred_hist.sum()
 
     hist_distance = torch.mean(torch.abs(y_true_hist - y_pred_hist))
+    return hist_distance
 
 class CombinedLoss(nn.Module):
     def __init__(self, device):
