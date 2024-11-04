@@ -68,7 +68,7 @@ class CombinedLoss(nn.Module):
         color_l = color_loss(y_true, y_pred)
 
         total_loss = (self.alpha1 * smooth_l1_l + self.alpha2 * perc_l + 
-                      self.alpha3 * hist_l + self.alpha4 * psnr_l + 
-                      self.alpha5 * color_l + self.alpha6 * ms_ssim_l)
+                      self.alpha3 * hist_l + self.alpha5 * psnr_l + 
+                      self.alpha6 * color_l + self.alpha4 * ms_ssim_l)
 
         return torch.mean(total_loss)
