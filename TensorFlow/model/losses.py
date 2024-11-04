@@ -60,6 +60,6 @@ def loss(y_true, y_pred, loss_model):
     psnr_l = psnr_loss(y_true, y_pred)
     color_l = color_loss(y_true, y_pred)
 
-    total_loss = alpha1 * smooth_l1_l + alpha2 * perc_l + alpha3*hist_l + alpha4*psnr_l + alpha5*color_l+ alpha6*ms_ssim_l
+    total_loss = alpha1 * smooth_l1_l + alpha2 * perc_l + alpha3*hist_l + alpha5*psnr_l + alpha6*color_l+ alpha4*ms_ssim_l
     total_loss = tf.reduce_mean(total_loss)
     return total_loss
