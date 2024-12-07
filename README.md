@@ -40,7 +40,7 @@ Preprint Citation
 ```
 @article{brateanu2024,
   title={LYT-Net: Lightweight YUV Transformer-based Network for Low-Light Image Enhancement},
-  author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian},
+  author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian and Cosmin, Ancuti},
   journal={arXiv preprint arXiv:2401.15204},
   year={2024}
 }
