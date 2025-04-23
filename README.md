@@ -38,7 +38,18 @@ Please check the ```TensorFlow``` and ```PyTorch``` folders for library-specific
 ## Citation
 Preprint Citation
 ```
-@article{brateanu2024,
+@article{brateanu2025lyt,
+  author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian and Ancuti, Cosmin},
+  journal={IEEE Signal Processing Letters}, 
+  title={LYT-NET: Lightweight YUV Transformer-based Network for Low-light Image Enhancement}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-5},
+  doi={10.1109/LSP.2025.3563125}}
+
+
+@article{brateanu2024lyt,
   title={LYT-Net: Lightweight YUV Transformer-based Network for Low-Light Image Enhancement},
   author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian and Cosmin, Ancuti},
   journal={arXiv preprint arXiv:2401.15204},
