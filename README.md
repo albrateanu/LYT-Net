@@ -5,6 +5,7 @@
 ![Logo](./figs/Logo.png)
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2401.15204)
+[![IEEE](https://img.shields.io/badge/IEEE-paper-blue)](https://ieeexplore.ieee.org/abstract/document/10972228)
 	
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/lyt-net-lightweight-yuv-transformer-based/low-light-image-enhancement-on-lol)](https://paperswithcode.com/sota/low-light-image-enhancement-on-lol?p=lyt-net-lightweight-yuv-transformer-based)
 	
@@ -17,6 +18,7 @@ Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 
 ## Updates
 <!-- - `12.01.2024`: text update -->
+- `21.04.2025` LYT-Net is published as a IEEE Signal Processing Letters paper. [Link to paper](https://ieeexplore.ieee.org/abstract/document/10972228)
 - `17.07.2024` Released rudimentary PyTorch implementation.
 - `03.04.2024` Training code re-added and adjusted.
 - `30.01.2024` arXiv pre-print available.
