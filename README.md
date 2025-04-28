@@ -1,4 +1,4 @@
-# LYT-Net: Lightweight YUV Transformer-based Network for Low-Light Image Enhancement
+# [SPL '25] LYT-Net: Lightweight YUV Transformer-based Network for Low-Light Image Enhancement
 
 <div align="center">
   
