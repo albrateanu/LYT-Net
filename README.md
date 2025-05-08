@@ -38,7 +38,6 @@ Please check the ```TensorFlow``` and ```PyTorch``` folders for library-specific
 
 
 ## Citation
-Preprint Citation
 ```
 @article{brateanu2025lyt,
   author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian and Ancuti, Cosmin},
