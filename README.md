@@ -18,7 +18,8 @@ Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 
 ## Updates
 <!-- - `12.01.2024`: text update -->
-- `21.04.2025` LYT-Net is published as a IEEE Signal Processing Letters paper. [Link to paper](https://ieeexplore.ieee.org/abstract/document/10972228)
+- `09.05.2025` Check out our other works on [Low-light Image Enhancement](https://github.com/albrateanu/KANT) and [Image Denoising](https://github.com/albrateanu/AKDT)!
+- `21.04.2025` LYT-Net is published as a IEEE Signal Processing Letters paper. [Link to paper](https://ieeexplore.ieee.org/abstract/document/10972228).
 - `17.07.2024` Released rudimentary PyTorch implementation.
 - `03.04.2024` Training code re-added and adjusted.
 - `30.01.2024` arXiv pre-print available.
