@@ -22,19 +22,19 @@
 Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 </div>
 
-## Updates
-<!-- - `12.01.2024`: text update -->
-- `09.05.2025` Check out our other works on [Low-light Image Enhancement](https://github.com/albrateanu/KANT) and [Image Denoising](https://github.com/albrateanu/AKDT)!
-- `21.04.2025` LYT-Net is published as a IEEE Signal Processing Letters paper. [Link to paper](https://ieeexplore.ieee.org/abstract/document/10972228).
-- `17.07.2024` Released rudimentary PyTorch implementation.
-- `03.04.2024` Training code re-added and adjusted.
-- `30.01.2024` arXiv pre-print available.
-- `10.01.2024` Pre-trained model weights and code for training and testing are released.
+## 🆕 Updates
+- `27.07.2025` 🤗 LYT-Net now has a new HuggingFace page! Check it out [here](https://huggingface.co/albrateanu/LYT-Net)! **HF Demo coming soon!** 
+- `09.05.2025` 📢 Check out our other works on [Low-light Image Enhancement](https://github.com/albrateanu/KANT) and [Image Denoising](https://github.com/albrateanu/AKDT)!
+- `21.04.2025` 📝 LYT-Net is published as a IEEE Signal Processing Letters paper. [Link to paper](https://ieeexplore.ieee.org/abstract/document/10972228).
+- `17.07.2024` 🧪 Released rudimentary PyTorch implementation.
+- `03.04.2024` 🔧 Training code re-added and adjusted.
+- `30.01.2024` 📄 arXiv pre-print available.
+- `10.01.2024` 🚀 Pre-trained model weights and code for training and testing are released.
 
-## Experiment
+## 🧪 Experiment
 Please check the ```TensorFlow``` and ```PyTorch``` folders for library-specific implementations.
 
-## Results
+## 📊 Results
 
 | Dataset  | TensorFlow |           | PyTorch |           |
 |:--------:|:----------:|:---------:|:-------:|:---------:|
@@ -44,7 +44,7 @@ Please check the ```TensorFlow``` and ```PyTorch``` folders for library-specific
 | LOLv2-S  |  29.39     |  0.939    | 26.72   |  0.928    |
 
 
-## Citation
+## 📚 Citation
 ```
 @article{brateanu2025lyt,
   author={Brateanu, Alexandru and Balmez, Raul and Avram, Adrian and Orhei, Ciprian and Ancuti, Cosmin},
