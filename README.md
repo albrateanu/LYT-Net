@@ -22,6 +22,11 @@
 Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 </div>
 
+### Abstract
+
+*This letter introduces LYT-Net, a novel lightweight transformer-based model for low-light image enhancement (LLIE). LYT-Net consists of several layers and detachable blocks, including our novel blocks--Channel-Wise Denoiser (CWD) and Multi-Stage Squeeze & Excite Fusion (MSEF)--along with the traditional Transformer block, Multi-Headed Self-Attention (MHSA). In our method we adopt a dual-path approach, treating chrominance channels U and V and luminance channel Y as separate entities to help the model better handle illumination adjustment and corruption restoration. Our comprehensive evaluation on established LLIE datasets demonstrates that, despite its low complexity, our model outperforms recent LLIE methods. The source code and pre-trained models are available at [this https URL](https://github.com/albrateanu/LYT-Net).*
+
+
 ## 🆕 Updates
 - `27.07.2025` 🤗 LYT-Net now has a new HuggingFace page! Check it out [here](https://huggingface.co/albrateanu/LYT-Net)! **HF Demo coming soon!** 
 - `09.05.2025` 📢 Check out our other works on [Low-light Image Enhancement](https://github.com/albrateanu/KANT) and [Image Denoising](https://github.com/albrateanu/AKDT)!
