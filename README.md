@@ -31,7 +31,7 @@ Ranked #1 on FLOPS(G) (3.49 GFLOPS) and Params(M) (0.045M = 45k Params)
 
 
 ## 🆕 Updates
-- `28.07.2025` ✨ Check out our new multimodal framework for LLIE: **ModalFormer: Multimodal Transformer for Low-Light Image Enhancement**! Paper and HF Demo coming soon!
+- `28.07.2025` ✨ Check out our new multimodal framework: **ModalFormer: Multimodal Transformer for Low-Light Image Enhancement**! Paper and HF Demo coming soon!
 - `27.07.2025` 🤗 LYT-Net now has a new HuggingFace page! Check it out [here](https://huggingface.co/albrateanu/LYT-Net)! **HF Demo coming soon!** 
 - `09.05.2025` 📢 Check out our other works on [Low-light Image Enhancement](https://github.com/albrateanu/KANT) and [Image Denoising](https://github.com/albrateanu/AKDT)!
 - `21.04.2025` 📝 LYT-Net is published as a IEEE Signal Processing Letters paper. [Link to paper](https://ieeexplore.ieee.org/abstract/document/10972228).
