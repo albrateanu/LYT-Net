@@ -4,6 +4,9 @@
 
 ![Logo](./figs/Logo.png)
 
+**[Alexandru Brateanu](https://scholar.google.com/citations?user=ru0meGgAAAAJ&hl=en), [Raul Balmez](https://scholar.google.com/citations?user=vPC7raQAAAAJ&hl=en), [Adrian Avram](https://scholar.google.com/citations?user=Wk3IxkEAAAAJ&hl=en), [Ciprian Orhei](https://scholar.google.com/citations?user=DZHdq3wAAAAJ&hl=en), [Cosmin Ancuti](https://scholar.google.com/citations?user=zVTgt8IAAAAJ&hl=en)**
+
+
 **Check out our HuggingFace page for LYT-Net!**
 
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Model-179bd3)](https://huggingface.co/albrateanu/LYT-Net)
